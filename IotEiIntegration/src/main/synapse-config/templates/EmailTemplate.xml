@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="EmailTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="subject"/>
+    <parameter name="toAddress"/>
+    <sequence>
+        <property expression="get-property('Email-Configs')" name="emailConfig" scope="default" type="OM"/>
+        <property expression="$func:subject" name="Subject" scope="transport" type="STRING"/>
+        <property name="ContentType" scope="axis2" type="STRING" value="text/html"/>
+        <property name="messageType" scope="axis2" type="STRING" value="text/html"/>
+        <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+        <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
+        <property expression="fn:concat('mailto:',$func:toAddress)" name="emailEP" scope="default" type="STRING"/>
+        <header expression="get-property('emailEP')" name="To" scope="default"/>
+        <send>
+            <endpoint>
+                <default>
+                    <suspendOnFailure>
+                        <initialDuration>-1</initialDuration>
+                        <progressionFactor>1</progressionFactor>
+                    </suspendOnFailure>
+                    <markForSuspension>
+                        <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                    </markForSuspension>
+                </default>
+            </endpoint>
+        </send>
+    </sequence>
+</template>
