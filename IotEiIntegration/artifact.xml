@@ -2,7 +2,7 @@
     <artifact name="testApi" groupId="com.example.iotintegration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/testApi.xml</file>
     </artifact>
-    <artifact name="EmailTemplate" groupId="com.example.iotintegration.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+    <artifact name="EmailTemplate" groupId="com.example.iotintegration.template" version="1.0.0" type="synapse/endpointTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/EmailTemplate.xml</file>
     </artifact>
 </artifacts>

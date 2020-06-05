@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><artifacts>
-    <artifact name="email-template" groupId="com.example.iotintegration.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <artifact name="email-template" groupId="com.example.iotintegration.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
         <item>
             <file>resources/xslt/email-template.xslt</file>
             <path>/_system/governance/_system/config/iotResources</path>
