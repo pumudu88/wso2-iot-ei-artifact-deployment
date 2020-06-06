@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:template match="/">
-		<!-- TODO: Auto-generated template -->
-	</xsl:template>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+   <xsl:output method="html" version="4.0" encoding="UTF-8" indent="yes" />
+   <xsl:template match="/">
+      <html>
+         <body>
+            <p>Service Name: Test Proxy</p>
+            <p>Execution success</p>
+         </body>
+      </html>
+   </xsl:template>
 </xsl:stylesheet>

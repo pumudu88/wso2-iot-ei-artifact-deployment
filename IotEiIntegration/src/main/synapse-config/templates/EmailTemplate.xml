@@ -3,7 +3,6 @@
     <parameter name="subject"/>
     <parameter name="toAddress"/>
     <sequence>
-        <property expression="get-property('Email-Configs')" name="emailConfig" scope="default" type="OM"/>
         <property expression="$func:subject" name="Subject" scope="transport" type="STRING"/>
         <property name="ContentType" scope="axis2" type="STRING" value="text/html"/>
         <property name="messageType" scope="axis2" type="STRING" value="text/html"/>
