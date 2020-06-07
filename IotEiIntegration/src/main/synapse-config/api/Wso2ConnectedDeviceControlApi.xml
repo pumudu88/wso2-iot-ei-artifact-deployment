@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/wso2ConnectedDeviceControl" name="Wso2ConnectedDeviceControlApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/getControl/{deviceId}/{parameter}">
+        <inSequence>
+            <log level="custom">
+                <property name="[IOT LOG] Discription : " value="inbound get control request."/>
+                <property expression="get-property('uri.var.deviceId')" name="[IOT LOG] Device Id : "/>
+                <property expression="get-property('uri.var.parameter')" name="[IOT LOG] Parameter key : "/>
+            </log>
+            <property expression="fn:concat('conf:iotDeviceRegistry/', get-property('uri.var.deviceId'),'/',get-property('uri.var.parameter'), '.prop')" name="resourcePath" scope="default" type="STRING"/>
+            <log>
+                <property expression="$ctx:resourcePath" name="[IOT LOG] resource path "/>
+                <property expression="get-property('registry',$ctx:resourcePath)" name="[IOT LOG] ResourceContent "/>
+            </log>
+            <property expression="get-property('uri.var.parameter')" name="parameterKey" scope="default" type="STRING"/>
+            <property expression="get-property('registry',$ctx:resourcePath)" name="parameterValue" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>            { "$1": "$2"  }            </format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:parameterKey"/>
+                    <arg evaluator="xml" expression="$ctx:parameterValue"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/setControl/{deviceId}">
+        <inSequence>
+            <log level="custom">
+                <property name="[IOT LOG] Discription : " value="inbound set control request."/>
+                <property expression="get-property('uri.var.deviceId')" name="[IOT LOG] Device Id : "/>
+                <property expression="json-eval($.parameterKey)" name="[IOT LOG] Parameter key : "/>
+                <property expression="json-eval($.parameterValue)" name="[IOT LOG] Parameter value : "/>
+            </log>
+            <property expression="json-eval($.parameterKey)" name="parameterKey" scope="default" type="STRING"/>
+            <property expression="fn:concat('conf:iotDeviceRegistry/', get-property('uri.var.deviceId'),'/', get-property('parameterKey'),'.prop')" name="resourcePath" scope="default" type="STRING"/>
+            <property expression="json-eval($.parameterValue)" name="{get-property('resourcePath')}" scope="registry" type="STRING"/>
+            <log>
+                <property expression="$ctx:resourcePath" name="[IOT LOG] resource path : "/>
+                <property expression="get-property('registry', $ctx:resourcePath)" name="[IOT LOG] inbound value from reg file : "/>
+            </log>
+            <payloadFactory media-type="json">
+                <format>{"deviceId": "$1","$2": "$3"}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('uri.var.deviceId')"/>
+                    <arg evaluator="json" expression="$.parameterKey"/>
+                    <arg evaluator="json" expression="$.parameterValue"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

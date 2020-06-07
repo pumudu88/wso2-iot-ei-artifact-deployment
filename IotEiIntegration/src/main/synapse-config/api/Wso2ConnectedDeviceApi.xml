@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/wso2ConnectedDevice" name="Wso2ConnectedDeviceApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/send/{deviceId}">
+        <inSequence>
+            <property expression="fn:concat('conf:iotDeviceRegistry/', get-property('uri.var.deviceId'),'/sequence-order.prop')" name="sequenceOrder" scope="default" type="STRING"/>
+            <property expression="get-property('registry',$ctx:sequenceOrder)" name="sequenceFlow" scope="default" type="STRING"/>
+            <property expression="fn:concat('conf:iotDeviceRegistry/', get-property('uri.var.deviceId'),'/is-sequential.prop')" name="isSequential" scope="default" type="STRING"/>
+            <property expression="get-property('registry',$ctx:isSequential)" name="isSequential" scope="default" type="STRING"/>
+            <sequence key="PreserveInboundPayload"/>
+            <log>
+                <property expression="$ctx:sequenceFlow" name="[IOT] integrationSequence : "/>
+                <property expression="$ctx:isSequential" name="isSequential"/>
+            </log>
+            <property name="MessageText" scope="default" type="STRING" value="a,b,c"/>
+            <script language="js"><![CDATA[var payloadXML = new XML(<root/>);        for each (var item in String(mc.getProperty("sequenceFlow")).split(',')) {            payloadXML.appendChild(new XML(<item>{item}</item>));        }        mc.setPayloadXML(payloadXML);]]></script>
+            <iterate continueParent="true" expression="//item" sequential="true" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+                <target>
+                    <sequence>
+                        <log level="full" separator="&#xa;">
+                            <property expression="$body/item" name="arrayChar"/>
+                        </log>
+                        <sequence key="{$ctx:body/item}"/>
+                    </sequence>
+                </target>
+            </iterate>
+            <payloadFactory media-type="json">
+                <format>            {        "operation": "success"      }            </format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

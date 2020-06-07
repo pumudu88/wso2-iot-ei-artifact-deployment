@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="EmailSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence key="UseInboundPayload"/>
+    <log>
+        <property name="email" value="email template"/>
+        <property expression="$ctx:body" name="payload" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
+    <property name="emailSubject" scope="default" type="STRING" value="Test Email Subject"/>
+    <property name="toAddress" scope="default" type="STRING" value="pumudu88@gmail.com"/>
+    <xslt key="conf:/iotResources/email-template.xslt"/>
+    <call-template target="EmailTemplate">
+        <with-param name="subject" value="{$ctx:emailSubject}" xmlns:ns="http://org.apache.synapse/xsd"/>
+        <with-param name="toAddress" value="{$ctx:toAddress}" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </call-template>
+</sequence>

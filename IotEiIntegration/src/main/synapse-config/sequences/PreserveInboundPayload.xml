@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="PreserveInboundPayload" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <filter regex="false" source="get-property('isSequential')" xmlns:ns="http://org.apache.synapse/xsd">
+        <then>
+            <log>
+                <property name="[IOT] enrich inbound payload : " value="going to copy"/>
+            </log>
+            <enrich>
+                <source clone="false" type="body"/>
+                <target property="extractedBody" type="property"/>
+            </enrich>
+        </then>
+        <else/>
+    </filter>
+</sequence>

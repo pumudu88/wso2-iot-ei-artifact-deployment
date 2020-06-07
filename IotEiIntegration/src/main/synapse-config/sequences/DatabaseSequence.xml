@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="DatabaseSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence key="UseInboundPayload"/>
+    <log>
+        <property name="database" value="database template"/>
+        <property expression="$ctx:body" name="body" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
+    <log level="full"/>
+    <payloadFactory media-type="xml">
+        <format>
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                <soapenv:Body>
+                    <p:insert_iot_data_table_operation xmlns:p="iot-data-service">
+                        <xs:data1 xmlns:xs="iot-data-service">$1</xs:data1>
+                        <xs:data2 xmlns:xs="iot-data-service">$2</xs:data2>
+                        <xs:data3 xmlns:xs="iot-data-service">$3</xs:data3>
+                        <xs:data4 xmlns:xs="iot-data-service">$4</xs:data4>
+                    </p:insert_iot_data_table_operation>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </format>
+        <args>
+            <arg evaluator="json" expression="$.testData1"/>
+            <arg evaluator="json" expression="$.testData2"/>
+            <arg evaluator="json" expression="$.testData3"/>
+            <arg evaluator="json" expression="$.testData4"/>
+        </args>
+    </payloadFactory>
+    <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+    <call>
+        <endpoint>
+            <address uri="http://localhost:8281/services/iot_data_table_DataService.SOAP12Endpoint">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </address>
+        </endpoint>
+    </call>
+</sequence>

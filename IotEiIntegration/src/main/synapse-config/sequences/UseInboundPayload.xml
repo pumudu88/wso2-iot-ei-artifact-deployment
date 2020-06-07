@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UseInboundPayload" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <filter regex="false" source="get-property('isSequential')" xmlns:ns="http://org.apache.synapse/xsd">
+        <then>
+            <log>
+                <property name="[IOT] inbound payload : " value="going to paste"/>
+            </log>
+            <enrich>
+                <source clone="false" property="extractedBody" type="property"/>
+                <target type="body"/>
+            </enrich>
+        </then>
+        <else/>
+    </filter>
+</sequence>
