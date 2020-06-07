@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?><artifacts>
-    <artifact name="testApi" groupId="com.example.iotintegration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/api/testApi.xml</file>
-    </artifact>
     <artifact name="EmailTemplate" groupId="com.example.iotintegration.template" version="1.0.0" type="synapse/endpointTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/EmailTemplate.xml</file>
+    </artifact>
+    <artifact name="Wso2ConnectedDeviceApi" groupId="com.example.iotintegration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Wso2ConnectedDeviceApi.xml</file>
+    </artifact>
+    <artifact name="Wso2ConnectedDeviceControlApi" groupId="com.example.iotintegration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Wso2ConnectedDeviceControlApi.xml</file>
+    </artifact>
+    <artifact name="DatabaseSequence" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/DatabaseSequence.xml</file>
+    </artifact>
+    <artifact name="EmailSequence" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/EmailSequence.xml</file>
+    </artifact>
+    <artifact name="PreserveInboundPayload" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/PreserveInboundPayload.xml</file>
+    </artifact>
+    <artifact name="UseInboundPayload" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UseInboundPayload.xml</file>
     </artifact>
 </artifacts>

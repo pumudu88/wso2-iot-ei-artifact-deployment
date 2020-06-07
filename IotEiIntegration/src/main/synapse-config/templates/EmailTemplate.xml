@@ -10,6 +10,7 @@
         <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
         <property expression="fn:concat('mailto:',$func:toAddress)" name="emailEP" scope="default" type="STRING"/>
         <header expression="get-property('emailEP')" name="To" scope="default"/>
+        <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
         <send>
             <endpoint>
                 <default>
