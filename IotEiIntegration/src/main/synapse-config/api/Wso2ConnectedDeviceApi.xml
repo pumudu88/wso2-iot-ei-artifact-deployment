@@ -30,6 +30,8 @@
             <respond/>
         </inSequence>
         <outSequence/>
-        <faultSequence/>
-    </resource>
+        <faultSequence>
+	      <sequence key="IotFaultSequence"/>
+        </faultSequence>
+    </resource>    
 </api>

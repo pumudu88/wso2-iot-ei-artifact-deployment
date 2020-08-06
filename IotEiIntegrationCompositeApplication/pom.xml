@@ -9,11 +9,14 @@
   <name>IotIntegrationCompositeApplication</name>
   <description>IotIntegrationCompositeApplication</description>
   <properties>
+    <com.example.iotintegration.sequence_._UploadCarFileSequence>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._UploadCarFileSequence>
+    <com.example.iotintegration.sequence_._IotFaultSequence>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._IotFaultSequence>
     <com.example.iotintegration.sequence_._DatabaseSequence>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._DatabaseSequence>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
     <com.example.iotintegration.resource_._email-template>capp/EnterpriseServiceBus</com.example.iotintegration.resource_._email-template>
     <com.example.iotintegration.sequence_._PreserveInboundPayload>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._PreserveInboundPayload>
     <com.example.iotintegration.api_._Wso2ConnectedDeviceControlApi>capp/EnterpriseServiceBus</com.example.iotintegration.api_._Wso2ConnectedDeviceControlApi>
+    <com.example.iotintegration.sequence_._GoogleSheetSequence>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._GoogleSheetSequence>
     <com.example.iotintegration.template_._EmailTemplate>capp/EnterpriseServiceBus</com.example.iotintegration.template_._EmailTemplate>
     <com.example.iotintegration.sequence_._EmailSequence>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._EmailSequence>
     <com.example.iotintegration.sequence_._UseInboundPayload>capp/EnterpriseServiceBus</com.example.iotintegration.sequence_._UseInboundPayload>
@@ -68,6 +71,24 @@
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
+    <dependency>
+      <groupId>com.example.iotintegration.sequence</groupId>
+      <artifactId>GoogleSheetSequence</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.iotintegration.sequence</groupId>
+      <artifactId>IotFaultSequence</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.iotintegration.sequence</groupId>
+      <artifactId>UploadCarFileSequence</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>    
   </dependencies>
   <repositories>
     <repository>

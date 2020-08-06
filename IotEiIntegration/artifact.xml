@@ -20,4 +20,13 @@
     <artifact name="UseInboundPayload" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/UseInboundPayload.xml</file>
     </artifact>
+    <artifact name="GoogleSheetSequence" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/GoogleSheetSequence.xml</file>
+    </artifact>
+    <artifact name="IotFaultSequence" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/IotFaultSequence.xml</file>
+    </artifact>
+    <artifact name="UploadCarFileSequence" groupId="com.example.iotintegration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UploadCarFileSequence.xml</file>
+    </artifact>
 </artifacts>
