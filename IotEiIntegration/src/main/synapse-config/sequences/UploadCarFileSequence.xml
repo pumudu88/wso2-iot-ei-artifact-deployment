@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="UploadCarFileSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+         <log level="full"/>
+         <property name="timestamp" expression="get-property('SYSTEM_DATE', 'yyyy-MM-dd HH:mm:ss')" scope="default" type="STRING"/>
+         <property name="source" expression="fn:concat('file:///Users/pumudu/Documents/msc-project-artifacts/testFiles/file-',$ctx:timestamp)" scope="default" type="STRING"/>
+         <property name="destination" expression="fn:concat($ctx:source,'.csv')" scope="default" type="STRING"/>
+         <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+         <fileconnector.send>
+            <address>{$ctx:source}</address>
+         </fileconnector.send>
+         <fileconnector.move>
+            <source>{$ctx:source}</source>
+            <destination>{$ctx:destination}</destination>
+         </fileconnector.move>
+         <payloadFactory media-type="json">
+            <format>{"success":"true"}</format>
+            <args/>
+         </payloadFactory>
+         <respond/>
+</sequence>

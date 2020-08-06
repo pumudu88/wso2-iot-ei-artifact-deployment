@@ -1,0 +1,30 @@
+!SESSION 2020-08-05 20:22:38.996 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_192
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  /org.wso2.developerstudio.rcp.plugin/icons/DeveloperStudio.icns -keyring /Users/pumudu/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 /org.wso2.developerstudio.rcp.plugin/icons/DeveloperStudio.icns -keyring /Users/pumudu/.eclipse_keyring
+
+!ENTRY org.eclipse.ui 2 0 2020-08-05 20:23:24.484
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-08-05 20:23:24.484
+!MESSAGE Commands should really have a category: plug-in='org.activiti.designer.kickstart.eclipse', id='org.activiti.designer.kickstart.command.refreshCmisNavigator', categoryId='org.activiti.designer.kickstart.eclipse.categor'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-08-05 20:23:24.484
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.ui.emf', id='org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand', categoryId='org.eclipse.papyrus.editor.category'
+
+!ENTRY org.eclipse.ui 2 0 2020-08-05 20:23:24.957
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-08-05 20:23:24.957
+!MESSAGE Commands should really have a category: plug-in='org.activiti.designer.kickstart.eclipse', id='org.activiti.designer.kickstart.command.refreshCmisNavigator', categoryId='org.activiti.designer.kickstart.eclipse.categor'
+!SUBENTRY 1 org.eclipse.ui 2 0 2020-08-05 20:23:24.957
+!MESSAGE Commands should really have a category: plug-in='org.eclipse.papyrus.infra.ui.emf', id='org.eclipse.papyrus.infra.emf.readonly.EnableWriteCommand', categoryId='org.eclipse.papyrus.editor.category'
+
+!ENTRY org.eclipse.core.net 1 0 2020-08-05 20:23:25.136
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2020-08-05 20:23:28.519
+!MESSAGE Removing part descriptor with the 'org.wso2.sample.multipage.form.editor.editors.FormView' id and the 'My View' description. Points to the invalid 'bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView' class.
+
+!ENTRY org.eclipse.core.jobs 2 2 2020-08-05 20:24:13.282
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.wso2.developerstudio.eclipse.updater.handler.UpdaterRootJob

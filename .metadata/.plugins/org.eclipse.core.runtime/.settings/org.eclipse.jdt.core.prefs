@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.core.classpathVariable.ECLIPSE_WORKSPACE=/Users/pumudu/Documents/msc-project-artifacts/wso2-iot-ei-artifact-deployment
+org.eclipse.jdt.core.userLibrary.Activiti\ Designer\ Extensions=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary systemlibrary\="false" version\="2">\n\t<archive path\="/Applications/IntegrationStudio.app/Contents/Eclipse/configuration/org.eclipse.osgi/721/0/.cp/libs/extensions/org.wso2.developerstudio.bpmn.extensions-7.0.0-SNAPSHOT.jar"/>\n</userlibrary>\n

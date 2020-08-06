@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="IotFaultSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property expression="get-property('axis2', 'HTTP_SC')" name="Fault status" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
+    <filter regex="401" source="get-property('axis2', 'HTTP_SC')" xmlns:ns="http://org.apache.synapse/xsd">
+        <then>
+            <log level="custom">
+                <property name="401" value="401 received"/>
+            </log>
+        </then>
+        <else/>
+    </filter>
+</sequence>
