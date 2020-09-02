@@ -2,9 +2,25 @@
 <sequence name="GoogleSheetSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <sequence key="UseInboundPayload"/>
     <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+    <payloadFactory media-type="json">
+        <format>
+        {"range":"Sheet1","majorDimension":"ROWS","values":[["$1","$2","$3","$4"]]}
+        </format>
+        <args>
+            <arg evaluator="json" expression="$.testData1"/>
+            <arg evaluator="json" expression="$.testData2"/>
+            <arg evaluator="json" expression="$.testData3"/>
+            <arg evaluator="json" expression="$.testData4"/>
+        </args>
+    </payloadFactory>
+    <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+    <property expression="fn:concat('conf:iotDeviceRegistry/', $ctx:deviceId,'/googlesheetbearer.prop')" name="googleSheetResourcePath" scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <property expression="get-property('registry',$ctx:googleSheetResourcePath)" name="googleSheetBearer" scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <property expression="fn:concat('Bearer ', $ctx:googleSheetBearer)" name="Authorization" scope="transport" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <log level="full"/>
     <call blocking="true">
         <endpoint>
-            <http method="post" uri-template="https://sheets.googleapis.com/v4/spreadsheets/190Ym4DG9s7Nk_YxA8cr1D_8VEmNpCnYsskyYgZxdvac/values/Sheet1:append?valueInputOption=RAW">
+            <http method="post" uri-template="https://sheets.googleapis.com/v4/spreadsheets/190Ym4DG9s7Nk_YxA8cr1D_8VEmNpCnYsskyYgZxdvac/values/Sheet1:append?valueInputOption=USER_ENTERED">
                 <suspendOnFailure>
                     <initialDuration>-1</initialDuration>
                     <progressionFactor>1</progressionFactor>
@@ -15,4 +31,8 @@
             </http>
         </endpoint>
     </call>
+    <property expression="$axis2:HTTP_SC" name="returnStatus" scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <log>
+        <property expression="$ctx:returnStatus" name="[IOT LOG] return status : " xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
 </sequence>

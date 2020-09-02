@@ -8,6 +8,54 @@
             <log level="custom">
                 <property name="401" value="401 received"/>
             </log>
+            <property name="clientId" scope="default" type="STRING" value="333367125512-q82ndjc8fmhhuv3tfvfd0ebm25uovese.apps.googleusercontent.com"/>
+            <property name="clientSecret" scope="default" type="STRING" value="5vvEZMHyJgR9VVPy4gdkQyhf"/>
+            <property name="refreshToken" scope="default" type="STRING" value="1//0gmld-I7hB6mXCgYIARAAGBASNwF-L9Ir5FM7QnjRigXhKgRZAnjHQOlxZFQazAxBToQiPW_nbcoRtqi7uuMcsdrKC5W_H8nfXjY"/>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Body>
+                            <root xmlns="">
+                                <client_id>$1</client_id>
+                                <client_secret>$2</client_secret>
+                                <refresh_token>$3</refresh_token>
+                                <grant_type>refresh_token</grant_type>
+                            </root>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:clientId"/>
+                    <arg evaluator="xml" expression="$ctx:clientSecret"/>
+                    <arg evaluator="xml" expression="$ctx:refreshToken"/>
+                </args>
+            </payloadFactory>
+            <header name="Content-Type" scope="transport" value="application/x-www-form-urlencoded"/>
+            <header name="ContentType" scope="transport" value="application/x-www-form-urlencoded"/>
+            <header name="contentType" scope="transport" value="application/x-www-form-urlencoded"/>
+            <property name="messageType" scope="transport" type="STRING" value="application/x-www-form-urlencoded"/>
+            <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+            <property name="messageType" scope="axis2" type="STRING" value="application/x-www-form-urlencoded"/>
+            <call blocking="true">
+                <endpoint>
+                    <http method="post" uri-template="https://oauth2.googleapis.com/token">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <log level="full"/>
+            <log>
+                <property expression="$ctx:deviceId" name="[IOT] device id : "/>
+                <property expression="json-eval($.access_token)" name="[IOT] bearer : "/>
+            </log>
+            <property expression="fn:concat('conf:iotDeviceRegistry/', $ctx:deviceId,'/googlesheetbearer.prop')" name="googleSheetResourcePath" scope="default" type="STRING"/>
+            <property expression="json-eval($.access_token)" name="{get-property('googleSheetResourcePath')}" scope="registry" type="STRING"/>
         </then>
         <else/>
     </filter>
