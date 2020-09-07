@@ -2,15 +2,18 @@
 <sequence name="GoogleSheetSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <sequence key="UseInboundPayload"/>
     <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+    <property name="uri.var.googlesheet" scope="default" type="STRING" value="190Ym4DG9s7Nk_YxA8cr1D_8VEmNpCnYsskyYgZxdvac"/>
+    <property name="uri.var.googlesheet.tab" scope="default" type="STRING" value="Sheet1"/>
     <payloadFactory media-type="json">
         <format>
-        {"range":"Sheet1","majorDimension":"ROWS","values":[["$1","$2","$3","$4"]]}
+        {"range":"$5","majorDimension":"ROWS","values":[["$1","$2","$3","$4"]]}
         </format>
         <args>
             <arg evaluator="json" expression="$.testData1"/>
             <arg evaluator="json" expression="$.testData2"/>
             <arg evaluator="json" expression="$.testData3"/>
             <arg evaluator="json" expression="$.testData4"/>
+            <arg evaluator="xml" expression="$ctx:uri.var.googlesheet.tab"/>
         </args>
     </payloadFactory>
     <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
@@ -20,7 +23,7 @@
     <log level="full"/>
     <call blocking="true">
         <endpoint>
-            <http method="post" uri-template="https://sheets.googleapis.com/v4/spreadsheets/190Ym4DG9s7Nk_YxA8cr1D_8VEmNpCnYsskyYgZxdvac/values/Sheet1:append?valueInputOption=USER_ENTERED">
+            <http method="post" uri-template="https://sheets.googleapis.com/v4/spreadsheets/{uri.var.googlesheet}/values/{uri.var.googlesheet.tab}:append?valueInputOption=USER_ENTERED">
                 <suspendOnFailure>
                     <initialDuration>-1</initialDuration>
                     <progressionFactor>1</progressionFactor>
