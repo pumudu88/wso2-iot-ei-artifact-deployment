@@ -3,7 +3,7 @@
    <xsl:template match="/">
       <html>
          <body>
-            <p>Service Name: Test Proxy</p>
+            <p>Service Name: Email Sequence</p>
             <p>Execution success</p>
          </body>
       </html>
